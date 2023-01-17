@@ -45,15 +45,43 @@
   </header>
 
   <main class="container">
+    <div class="p-4">
+      <h1 class="text-center">Cadastro de produto
+        <small class="text-muted">em geral</small>
+      </h1>
+    </div>
     <form class="row g-3">
-      <div class="col-12 col-md-6">
-        <input type="email" class="form-control" id="email" placeholder="E-mail do responsável">
-      </div>
-      <div class="col-12 col-md-4">
-        <input type="text" class="form-control" id="email" placeholder="nome do produto">
+      <div class="col-12 col-md-2">
+        <select name="ano" class="form-select">
+          <option value="">Ano</option>
+          <option value="">2023</option>
+        </select>
       </div>
       <div class="col-12 col-md-2">
-        <select class="form-select" name="tipo" id="">
+        <select name="mes" class="form-select">
+          <option value="1">Mês</option>
+          <option value="2">janeiro</option>
+          <option value="3">Fevereiro</option>
+          <option value="4">Março</option>
+          <option value="5">Abril</option>
+          <option value="6">Maio</option>
+          <option value="7">Junho</option>
+          <option value="8">Julho</option>
+          <option value="9">Agosto</option>
+          <option value="10">Novembro</option>
+          <option value="11">Outubro</option>
+          <option value="12">Setembro</option>
+          <option value="13">Dezembro</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-2">
+        <input type="number" class="form-control" placeholder="Dia">
+      </div>
+      <div class="col-12 col-md-4">
+        <input type="text" class="form-control" placeholder="nome do produto">
+      </div>
+      <div class="col-12 col-md-2">
+        <select class="form-select" name="tipo">
           <option value="">Tipo</option>
           <option value="">Alimentação</option>
           <option value="">Transporte</option>
@@ -62,12 +90,24 @@
           <option value="">Esportes</option>
         </select>
       </div>
+      <div class="col-12 col-md-6">
+        <input type="text" class="form-control" placeholder="Descrição">
+      </div>
+      <div class="col-12 col-md-2">
+
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="valor" aria-label="Dollar amount (with dot and two decimal places)">
+          <span class="input-group-text">$</span>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 d-flex justify-content-end">
+        <button type="submit" class="btn btn-danger mb-3 mx-2">limpar</button>
+        <button type="submit" class="btn btn-primary mb-3">Cadastrar</button>
+      </div>
     </form>
   </main>
 
-
   <script src="./app.js"></script>
- 
 
 </body>
 
