@@ -17,7 +17,35 @@ class Produto {
         return true
     }
 }
+
+class Bd {
+    constructor() {
+       let id = localStorage.getItem('id')
+       
+       if (id == null) {
+        id = localStorage.setItem('id', 0)
+       }
+    }
+
+    getProximoId() {
+        let id = parseInt(localStorage.getItem('id')) + 1
+        this.setProximoId(id)
+
+       return id 
+    }
+    setProximoId(i) {
+      return localStorage.setItem('id', i)
+    }
+    gravar(d) {
+      let id = this.getProximoId()
+      localStorage.setItem(id, JSON.stringify(d))
+
+    }
+}
+
 function cadastroProduto() {
+
+    let bd = new Bd
 
     let ano = document.getElementById('ano')
     let mes = document.getElementById('mes')
@@ -43,7 +71,6 @@ function cadastroProduto() {
     descricao.classList.add(`${descricao.value !== '' ? 'is-valid' : descricao.classList.remove('is-valid')}`)
     valor.classList.add(`${valor.value !== '' ? 'is-valid' : valor.classList.remove('is-valid')}`)
 
-
     let produto = new Produto(
         ano.value,
         mes.value,
@@ -56,6 +83,8 @@ function cadastroProduto() {
 
     if (produto.validarDados()) {
 
+        bd.gravar(produto)
+
         let modal_titulo = document.getElementById('modal_titulo')
         modal_titulo.innerHTML = 'Enviado com sucesso!'
         modal_titulo.className = 'modal-title fs-5 text-success'
@@ -67,7 +96,15 @@ function cadastroProduto() {
         modal_botao.innerHTML = 'Prosseguir'
         modal_botao.className = 'btn btn-success bg-gradient'
 
+        modal_botao.onclick = () => {
+           document.location.href = 'file:///C:/github/cadastro-cliente-JS/consulta.html'
+        }
+
+      
+
+
     } else {
+
 
         let modal_titulo = document.getElementById('modal_titulo')
         modal_titulo.innerHTML = 'Falha ao preencher dados'
@@ -80,4 +117,9 @@ function cadastroProduto() {
         modal_botao.innerHTML = 'Voltar'
         modal_botao.className = 'btn btn-danger bg-gradient'
     }
+
+}
+
+function limparFormulario() {
+    document.location.reload()
 }
