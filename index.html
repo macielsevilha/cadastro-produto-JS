@@ -46,62 +46,60 @@
 
   <main class="container">
     <div class="p-4">
-      <h1 class="text-center">Cadastro de produto
-        <small class="text-muted">em geral</small>
-      </h1>
+      <h1 class="text-center"><small class="text-muted">Cadastro de</small> produto</h1>
     </div>
     <form class="row g-3">
       <div class="col-12 col-md-2">
-        <select name="ano" class="form-select">
+        <select name="ano" class="form-select" id="ano">
           <option value="">Ano</option>
-          <option value="">2023</option>
+          <option value="2023">2023</option>
         </select>
       </div>
       <div class="col-12 col-md-2">
-        <select name="mes" class="form-select">
-          <option value="1">Mês</option>
-          <option value="2">janeiro</option>
-          <option value="3">Fevereiro</option>
-          <option value="4">Março</option>
-          <option value="5">Abril</option>
-          <option value="6">Maio</option>
-          <option value="7">Junho</option>
-          <option value="8">Julho</option>
-          <option value="9">Agosto</option>
-          <option value="10">Novembro</option>
-          <option value="11">Outubro</option>
-          <option value="12">Setembro</option>
-          <option value="13">Dezembro</option>
+        <select name="mes" class="form-select" id="mes">
+          <option value="">Mês</option>
+          <option value="1">janeiro</option>
+          <option value="2">Fevereiro</option>
+          <option value="3">Março</option>
+          <option value="4">Abril</option>
+          <option value="5">Maio</option>
+          <option value="6">Junho</option>
+          <option value="7">Julho</option>
+          <option value="8">Agosto</option>
+          <option value="9">Novembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Setembro</option>
+          <option value="12">Dezembro</option>
         </select>
       </div>
       <div class="col-12 col-md-2">
-        <input type="number" class="form-control" placeholder="Dia">
+        <input type="number" class="form-control" placeholder="Dia" id="dia">
       </div>
       <div class="col-12 col-md-4">
-        <input type="text" class="form-control" placeholder="nome">
+        <input type="text" class="form-control" placeholder="nome" id="nome">
       </div>
       <div class="col-12 col-md-2">
-        <select class="form-select" name="tipo">
+        <select class="form-select" name="tipo" id="tipo">
           <option value="">Tipo</option>
-          <option value="">Alimentação</option>
-          <option value="">Transporte</option>
-          <option value="">Lazer</option>
-          <option value="">Tecnologia</option>
-          <option value="">Esportes</option>
+          <option value="1">Alimentação</option>
+          <option value="2">Transporte</option>
+          <option value="3">Lazer</option>
+          <option value="4">Tecnologia</option>
+          <option value="5">Esportes</option>
         </select>
       </div>
       <div class="col-12 col-md-6">
-        <input type="text" class="form-control" placeholder="Descrição">
+        <input type="text" class="form-control" placeholder="Descrição" id="descricao">
       </div>
       <div class="col-12 col-md-2">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="valor" aria-label="Dollar amount (with dot and two decimal places)">
+          <input type="text" class="form-control" placeholder="valor" aria-label="Dollar amount (with dot and two decimal places)" id="valor">
           <span class="input-group-text">$</span>
         </div>
       </div>
       <div class="col-12 col-md-4 d-flex justify-content-end">
-        <button type="submit" class="btn btn-danger mb-3 mx-2">limpar</button>
-        <button type="submit" class="btn btn-primary mb-3">Cadastrar</button>
+        <button type="submit" class="btn btn-danger bg-gradient mb-3 mx-2">limpar</button>
+        <button type="button" class="btn btn-primary bg-gradient mb-3" onclick="cadastroProduto()">Cadastrar</button>
       </div>
     </form>
   </main>
