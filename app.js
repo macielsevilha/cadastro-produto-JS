@@ -1,17 +1,24 @@
 class Produto {
     constructor(ano, mes, dia, nome, tipo, descricao, valor) {
-      this.ano = ano
-      this.mes = mes
-      this.dia = dia
-      this.nome = nome
-      this.tipo = tipo
-      this.descricao = descricao
-      this.valor = valor
+        this.ano = ano
+        this.mes = mes
+        this.dia = dia
+        this.nome = nome
+        this.tipo = tipo
+        this.descricao = descricao
+        this.valor = valor
+    }
+    validarDados() {
+        for (let i in this) {
+            if (this[i] == undefined || this[i] == null || this[i] == '') {
+                return false
+            }
+        }
+        return true
     }
 }
-
 function cadastroProduto() {
-  
+
     let ano = document.getElementById('ano')
     let mes = document.getElementById('mes')
     let dia = document.getElementById('dia')
@@ -19,6 +26,23 @@ function cadastroProduto() {
     let tipo = document.getElementById('tipo')
     let descricao = document.getElementById('descricao')
     let valor = document.getElementById('valor')
+
+    ano.classList.add(`${ano.value == '' ? 'is-invalid' : ano.classList.remove('is-invalid')}`)
+    mes.classList.add(`${mes.value == '' ? 'is-invalid' : mes.classList.remove('is-invalid')}`)
+    dia.classList.add(`${dia.value == '' ? 'is-invalid' : dia.classList.remove('is-invalid')}`)
+    nome.classList.add(`${nome.value == '' ? 'is-invalid' : nome.classList.remove('is-invalid')}`)
+    tipo.classList.add(`${tipo.value == '' ? 'is-invalid' : tipo.classList.remove('is-invalid')}`)
+    descricao.classList.add(`${descricao.value == '' ? 'is-invalid' : descricao.classList.remove('is-invalid')}`)
+    valor.classList.add(`${valor.value == '' ? 'is-invalid' : valor.classList.remove('is-invalid')}`)
+
+    ano.classList.add(`${ano.value !== '' ? 'is-valid' : ano.classList.remove('is-valid')}`)
+    mes.classList.add(`${mes.value !== '' ? 'is-valid' : mes.classList.remove('is-valid')}`)
+    dia.classList.add(`${dia.value !== '' ? 'is-valid' : dia.classList.remove('is-valid')}`)
+    nome.classList.add(`${nome.value !== '' ? 'is-valid' : nome.classList.remove('is-valid')}`)
+    tipo.classList.add(`${tipo.value !== '' ? 'is-valid' : tipo.classList.remove('is-valid')}`)
+    descricao.classList.add(`${descricao.value !== '' ? 'is-valid' : descricao.classList.remove('is-valid')}`)
+    valor.classList.add(`${valor.value !== '' ? 'is-valid' : valor.classList.remove('is-valid')}`)
+
 
     let produto = new Produto(
         ano.value,
@@ -30,7 +54,30 @@ function cadastroProduto() {
         valor.value
     )
 
-    console.log(produto)
+    if (produto.validarDados()) {
+
+        let modal_titulo = document.getElementById('modal_titulo')
+        modal_titulo.innerHTML = 'Enviado com sucesso!'
+        modal_titulo.className = 'modal-title fs-5 text-success'
+
+        let modal_conteudo = document.getElementById('modal_conteudo')
+        modal_conteudo.innerHTML = 'Os dados foi gravado com sucesso para visualizar é só prosseguir'
+
+        let modal_botao = document.getElementById('modal_botao')
+        modal_botao.innerHTML = 'Prosseguir'
+        modal_botao.className = 'btn btn-success bg-gradient'
+
+    } else {
+
+        let modal_titulo = document.getElementById('modal_titulo')
+        modal_titulo.innerHTML = 'Falha ao preencher dados'
+        modal_titulo.className = 'modal-title fs-5 text-danger'
+
+        let modal_conteudo = document.getElementById('modal_conteudo')
+        modal_conteudo.innerHTML = 'Erro ao gravar os dados por favor volta e preencha os dados corretamente'
+
+        let modal_botao = document.getElementById('modal_botao')
+        modal_botao.innerHTML = 'Voltar'
+        modal_botao.className = 'btn btn-danger bg-gradient'
+    }
 }
-
-

@@ -93,15 +93,35 @@
       </div>
       <div class="col-12 col-md-2">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="valor" aria-label="Dollar amount (with dot and two decimal places)" id="valor">
+          <input type="text" class="form-control" placeholder="valor"
+            aria-label="Dollar amount (with dot and two decimal places)" id="valor">
           <span class="input-group-text">$</span>
         </div>
       </div>
       <div class="col-12 col-md-4 d-flex justify-content-end">
         <button type="submit" class="btn btn-danger bg-gradient mb-3 mx-2">limpar</button>
-        <button type="button" class="btn btn-primary bg-gradient mb-3" onclick="cadastroProduto()">Cadastrar</button>
+        <button type="button" class="btn btn-primary bg-gradient mb-3"  data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="cadastroProduto()">Cadastrar</button>
       </div>
     </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modal_titulo"></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal_conteudo">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-bs-dismiss="modal" id="modal_botao"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <script src="./app.js"></script>
