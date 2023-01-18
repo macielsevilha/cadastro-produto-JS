@@ -20,32 +20,53 @@ class Produto {
 
 class Bd {
     constructor() {
-       let id = localStorage.getItem('id')
-       
-       if (id == null) {
-        id = localStorage.setItem('id', 0)
-       }
+        let id = localStorage.getItem('id')
+
+        if (id == null) {
+            id = localStorage.setItem('id', 0)
+        }
     }
 
     getProximoId() {
         let id = parseInt(localStorage.getItem('id')) + 1
         this.setProximoId(id)
 
-       return id 
+        return id
     }
+
     setProximoId(i) {
-      return localStorage.setItem('id', i)
+        return localStorage.setItem('id', i)
     }
+
     gravar(d) {
-      let id = this.getProximoId()
-      localStorage.setItem(id, JSON.stringify(d))
+        let id = this.getProximoId()
+        localStorage.setItem(id, JSON.stringify(d))
+
+    }
+
+    recuperarTodosRegistros() {
+
+        let registros = []
+
+        let id = localStorage.getItem('id')
+
+        for (let i = 1; i <= id; i++) {
+            let registro = JSON.parse(localStorage.getItem(i))
+
+            if (registro == null) {
+                continue
+            }
+            registros.push(registro)
+        }
+
+        return registros
 
     }
 }
 
-function cadastroProduto() {
+let bd = new Bd()
 
-    let bd = new Bd
+function cadastroProduto() {
 
     let ano = document.getElementById('ano')
     let mes = document.getElementById('mes')
@@ -97,14 +118,10 @@ function cadastroProduto() {
         modal_botao.className = 'btn btn-success bg-gradient'
 
         modal_botao.onclick = () => {
-           document.location.href = 'file:///C:/github/cadastro-cliente-JS/consulta.html'
+            document.location.href = 'file:///C:/github/cadastro-cliente-JS/consulta.html'
         }
 
-      
-
-
     } else {
-
 
         let modal_titulo = document.getElementById('modal_titulo')
         modal_titulo.innerHTML = 'Falha ao preencher dados'
@@ -122,4 +139,48 @@ function cadastroProduto() {
 
 function limparFormulario() {
     document.location.reload()
+}
+
+function mostrarListraRegistros() {
+    let regitro = bd.recuperarTodosRegistros()
+
+    let cabecalho = document.getElementById('cabecalho')
+    c = cabecalho.insertRow()
+
+    c.insertCell(0).outerHTML = '<th>data</th>'
+    c.insertCell(1).outerHTML = '<th>nome</th>'
+    c.insertCell(2).outerHTML = '<th>tipo</th>'
+    c.insertCell(3).outerHTML = '<th>descrição</th>'
+    c.insertCell(4).outerHTML = '<th>valor</th>'
+
+    let conteudo = document.getElementById('conteudo')
+
+    regitro.forEach((e) => {
+
+        l = conteudo.insertRow()
+        l.insertCell(0).innerHTML = `${e.dia}/${e.mes}/${e.ano}`
+        l.insertCell(1).innerHTML = e.nome
+
+        switch (parseInt(e.tipo)) {
+            case 1: e.tipo = 'Alimentação'
+                break
+            case 2: e.tipo = 'Transporte'
+                break
+            case 3: e.tipo = 'Lazer'
+                break
+            case 4: e.tipo = 'Tecnologia'
+                break
+            case 5: e.tipo = 'Esportes'
+        }
+
+        l.insertCell(2).innerHTML = e.tipo
+        l.insertCell(3).innerHTML = e.descricao
+        e.valor = e.valor.replace('.', ',')
+        l.insertCell(4).innerHTML = `$ ${e.valor}`
+
+        console.log(e)
+
+    })
+
+
 }

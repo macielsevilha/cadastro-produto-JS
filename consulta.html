@@ -16,9 +16,10 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
   <title>Consulta de dados</title>
+ 
 </head>
 
-<body>
+<body onload="mostrarListraRegistros()">
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient mb-5">
       <div class="container-fluid">
@@ -94,37 +95,11 @@
     </form>
    <div class="table-responsive">
     <table class="table table-striped table-hover align-middle">
-      <thead>
-        <tr>
-          <th scope="col">Nome</th>
-          <th scope="col">Data</th>
-          <th scope="col">Tipo</th>
-          <th scope="col">Descrição</th>
-          <th scope="col">Valor</th>
-        </tr>
+      <thead id="cabecalho">
+       
       </thead>
-      <tbody class="table-group-divider">
-        <tr>
-          <td>Computador</td>
-          <td>03/04/2023</td>
-          <td>Alimentação</td>
-          <td>Produto lançamento de 2023.</td>
-          <td>123,54 $</td>
-        </tr>
-        <tr>
-          <td>Computador</td>
-          <td>03/04/2023</td>
-          <td>Alimentação</td>
-          <td>Produto lançamento de 2023.</td>
-          <td>123,54 $</td>
-        </tr>
-        <tr>
-          <td>Computador</td>
-          <td>03/04/2023</td>
-          <td>Alimentação</td>
-          <td>Produto lançamento de 2023.</td>
-          <td>123,54 $</td>
-        </tr>
+      <tbody class="table-group-divider" id="conteudo">
+       
       </tbody>
     </table>
    </div>
