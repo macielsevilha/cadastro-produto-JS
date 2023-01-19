@@ -25,6 +25,8 @@ class Bd {
         if (id == null) {
             id = localStorage.setItem('id', 0)
         }
+
+        
     }
 
     getProximoId() {
@@ -56,10 +58,17 @@ class Bd {
             if (registro == null) {
                 continue
             }
+            registro.id = i
             registros.push(registro)
         }
 
+       
         return registros
+    }
+
+    remover(id) {
+        console.log(id)
+      localStorage.removeItem(id)
     }
 }
 
@@ -140,10 +149,10 @@ function limparFormulario() {
 }
 
 function mostrarListraRegistros() {
-    let regitro = bd.recuperarTodosRegistros()
+    let registro = bd.recuperarTodosRegistros()
 
     let cabecalho = document.getElementById('cabecalho')
-    c = cabecalho.insertRow()
+    let c = cabecalho.insertRow()
 
     c.insertCell(0).outerHTML = '<th>data</th>'
     c.insertCell(1).outerHTML = '<th>nome</th>'
@@ -153,9 +162,9 @@ function mostrarListraRegistros() {
 
     let conteudo = document.getElementById('conteudo')
 
-    regitro.forEach((e) => {
+    registro.forEach((e) => {
 
-        l = conteudo.insertRow()
+        let l = conteudo.insertRow()
         l.insertCell(0).innerHTML = `${e.dia}/${e.mes}/${e.ano}`
         l.insertCell(1).innerHTML = e.nome
 
@@ -178,7 +187,16 @@ function mostrarListraRegistros() {
        
         let btn = document.createElement('button')
         btn.classList.add('btn', 'btn-danger')
+        // btn.id = `id_produto_${e.id}`
         btn.innerHTML = "<i class='fas fa-trash'></i>"
+
+        btn.onclick = () => {
+
+           let id = JSON.stringify(e.id)
+           bd.remover(id)
+
+           document.location.reload()
+        }
 
         l.insertCell(5).append(btn)
 
@@ -186,4 +204,3 @@ function mostrarListraRegistros() {
 
 
 }
-
