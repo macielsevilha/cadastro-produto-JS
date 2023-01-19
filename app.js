@@ -66,6 +66,10 @@ class Bd {
         return registros
     }
 
+    pesquisar() {
+
+    }
+
     remover(id) {
         console.log(id)
       localStorage.removeItem(id)
@@ -187,13 +191,9 @@ function mostrarListraRegistros() {
        
         let btn = document.createElement('button')
         btn.classList.add('btn', 'btn-danger')
-        // btn.id = `id_produto_${e.id}`
         btn.innerHTML = "<i class='fas fa-trash'></i>"
 
         btn.onclick = () => {
-
-            alert()
-
            let id = JSON.stringify(e.id)
            bd.remover(id)
 
@@ -203,6 +203,16 @@ function mostrarListraRegistros() {
         l.insertCell(5).append(btn)
 
     })
+}
 
+function pesquisar() {
+
+    let ano = document.getElementById('ano')
+    let mes = document.getElementById('mes')
+    let dia = document.getElementById('tipo')
+    let nome = document.getElementById('nome')
+    let tipo = document.getElementById('tipo')
+
+    console.log(ano.value, mes.value, dia.value, nome.value, tipo.value)
 
 }
