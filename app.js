@@ -192,6 +192,8 @@ function mostrarListraRegistros() {
 
         btn.onclick = () => {
 
+            alert()
+
            let id = JSON.stringify(e.id)
            bd.remover(id)
 
