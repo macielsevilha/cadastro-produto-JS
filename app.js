@@ -60,7 +60,6 @@ class Bd {
         }
 
         return registros
-
     }
 }
 
@@ -134,7 +133,6 @@ function cadastroProduto() {
         modal_botao.innerHTML = 'Voltar'
         modal_botao.className = 'btn btn-danger bg-gradient'
     }
-
 }
 
 function limparFormulario() {
@@ -177,10 +175,15 @@ function mostrarListraRegistros() {
         l.insertCell(3).innerHTML = e.descricao
         e.valor = e.valor.replace('.', ',')
         l.insertCell(4).innerHTML = `$ ${e.valor}`
+       
+        let btn = document.createElement('button')
+        btn.classList.add('btn', 'btn-danger')
+        btn.innerHTML = "<i class='fas fa-trash'></i>"
 
-        console.log(e)
+        l.insertCell(5).append(btn)
 
     })
 
 
 }
+
