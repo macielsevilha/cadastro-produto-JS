@@ -25,8 +25,6 @@ class Bd {
         if (id == null) {
             id = localStorage.setItem('id', 0)
         }
-
-        
     }
 
     getProximoId() {
@@ -62,11 +60,21 @@ class Bd {
             registros.push(registro)
         }
 
-       
         return registros
     }
 
-    pesquisar() {
+    pesquisar(p) {
+
+        let produtroFiltradas = []
+        produtroFiltradas = this.recuperarTodosRegistros()
+       
+        if(p.ano != '') produtroFiltradas = produtroFiltradas.filter(d => d.ano == p.ano)
+        if(p.mes != '') produtroFiltradas = produtroFiltradas.filter(d => d.mes == p.mes)
+        if(p.dia != '') produtroFiltradas = produtroFiltradas.filter(d => d.dia == p.dia)
+        if(p.nome != '') produtroFiltradas = produtroFiltradas.filter(d => d.nome == p.nome)
+        if(p.tipo != '') produtroFiltradas = produtroFiltradas.filter(d => d.tipo == p.tipo)
+
+        return produtroFiltradas
 
     }
 
@@ -152,9 +160,7 @@ function limparFormulario() {
     document.location.reload()
 }
 
-function mostrarListraRegistros() {
-    let registro = bd.recuperarTodosRegistros()
-
+function criarCabecalhoTabela() {
     let cabecalho = document.getElementById('cabecalho')
     let c = cabecalho.insertRow()
 
@@ -163,11 +169,18 @@ function mostrarListraRegistros() {
     c.insertCell(2).outerHTML = '<th>tipo</th>'
     c.insertCell(3).outerHTML = '<th>descrição</th>'
     c.insertCell(4).outerHTML = '<th>valor</th>'
+} criarCabecalhoTabela()
+
+function mostrarListraRegistros(produtos = [], filtro = false) {
+
+    if(produtos.length == 0 && filtro == false) {
+        produtos = bd.recuperarTodosRegistros()
+    }
 
     let conteudo = document.getElementById('conteudo')
-
-    registro.forEach((e) => {
-
+    conteudo.innerHTML = ''
+  
+    produtos.forEach((e) => {
         let l = conteudo.insertRow()
         l.insertCell(0).innerHTML = `${e.dia}/${e.mes}/${e.ano}`
         l.insertCell(1).innerHTML = e.nome
@@ -187,7 +200,7 @@ function mostrarListraRegistros() {
         l.insertCell(2).innerHTML = e.tipo
         l.insertCell(3).innerHTML = e.descricao
         e.valor = e.valor.replace('.', ',')
-        l.insertCell(4).innerHTML = `$ ${e.valor}`
+        l.insertCell(4).innerHTML = `$ ${parseFloat(e.valor)}`
        
         let btn = document.createElement('button')
         btn.classList.add('btn', 'btn-danger')
@@ -209,10 +222,19 @@ function pesquisar() {
 
     let ano = document.getElementById('ano')
     let mes = document.getElementById('mes')
-    let dia = document.getElementById('tipo')
+    let dia = document.getElementById('dia')
     let nome = document.getElementById('nome')
     let tipo = document.getElementById('tipo')
 
-    console.log(ano.value, mes.value, dia.value, nome.value, tipo.value)
+    let produtos = new Produto(  
+        ano.value,
+        mes.value,
+        dia.value,
+        nome.value,
+        tipo.value
+        )
 
+        let produto = bd.pesquisar(produtos)
+
+   this.mostrarListraRegistros(produto, true)
 }
